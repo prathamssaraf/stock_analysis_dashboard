@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./widgets",
+        "./widgets/sales_"
+    ]
+}

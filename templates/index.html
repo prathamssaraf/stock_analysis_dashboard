@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        /* CSS styles for positioning and sizing the charts */
+
+        h1 {
+            position: absolute;
+            left: 2.7%; /* Add padding to the h1 element */
+        }
+
+        body {
+            width: 100%; /* Set the width to 100% of the viewport width */
+            height: 200%; /* Set the height to 100% of the viewport height */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            font-family: Arial, sans-serif;
+        }
+
+        #pie_chart {
+            position: absolute;
+            top: 200%;
+            left: 0px;
+        }
+
+        #line_chart {
+            position: absolute;
+            top: 200%;
+            right: 0;
+             /* Adjust margin as needed */
+        }
+
+        #sales_chart {
+            position: absolute;
+            top: 20%; /* Adjust top position for sales chart */
+            right: 0;
+            height: 50%;
+        }
+
+
+        #price_chart {
+            position: absolute;
+            top: 20%; /* Adjust top position for sales chart */
+            left: 0;
+            height: 50%;
+        }
+
+        #market_price_card {
+            background-color: white;
+            position: absolute;
+            top: 2%; /* Adjust top position for card */
+            right: 450px; /* Center card horizontally */ /* Center card horizontally */
+            width: 140px;
+            height: 60px; /* Set card width */
+            padding: 10px; /* Add padding to card content */
+            border-radius: 10px; /* Add border radius */
+             /* Add box shadow */
+        }
+        #pe {
+            background-color: white;
+            position: absolute;
+            top: 2%; /* Adjust top position for card */
+            right: 200px; /* Center card horizontally */
+            transform: translateX(-50%); /* Center card horizontally */
+            width: 140px;
+            height: 60px; /* Set card width */
+             /* Set card background color */
+            padding: 10px; /* Add padding to card content */
+            border-radius: 10px; /* Add border radius */
+             /* Add box shadow */
+        }
+        #market_cap{
+            background-color: white;
+            position: absolute;
+            top: 2%; /* Adjust top position for card */
+            right: 10px; /* Center card horizontally */
+            
+            width: 240px;
+            height: 60px; /* Set card width */
+             /* Set card background color */
+            padding: 10px; /* Add padding to card content */
+            border-radius: 10px; /* Add border radius */
+            
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 13px;
+            left: 50%;
+            margin-bottom: 5px;
+            margin-top: 0px; /* Set font size for card heading */
+        }
+
+        p {
+            text-align: center;
+            left: 50%;
+            margin-top: 0;
+            font-size: 40px; /* Set font size for card value */
+            font-weight: bold;
+             /* Make value bold */
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Dashboard</h1>
+
+    <!-- Pie Chart -->
+    <div id="pie_chart"></div>
+
+    <!-- Line Chart -->
+    <div id="line_chart"></div>
+
+    <!-- Sales Chart -->
+    <div id="sales_chart"></div>
+
+    <div id="price_chart"></div>
+
+
+    <!-- Market Price Card -->
+    <div id="market_price_card">
+        <h2>Market Price</h2>
+        <p>{{ market_price }}</p> <!-- Display the current price -->
+    </div>
+
+    <div id="pe">
+        <h2>Stock P/E</h2>
+        <p>{{ pe }}</p> <!-- Display the current price -->
+    </div>
+
+    <div id="market_cap">
+        <h2>Market Cap</h2>
+        <p>{{ market_cap }} Cr</p> <!-- Display the current price -->
+    </div>
+
+    <script>
+        // Load the JSON data for the pie chart
+        var pieChartData = {{ pie_chart_json|safe }};
+
+        // Render the pie chart using Plotly.js
+        Plotly.newPlot('pie_chart', pieChartData);
+
+        // Load the JSON data for the line chart
+        var lineChartData = {{ line_chart_json|safe }};
+
+        // Render the line chart using Plotly.js
+        Plotly.newPlot('line_chart', lineChartData);
+
+        // Load the JSON data for the sales chart
+        var salesChartData = {{ sales_yearly_json|safe }};
+
+        // Render the sales chart using Plotly.js
+        Plotly.newPlot('sales_chart', salesChartData);
+
+        var priceChart = {{ price_chart|safe }};
+
+        // Render the sales chart using Plotly.js
+        Plotly.newPlot('price_chart', priceChart);
+        
+    </script>
+</body>
+</html>
